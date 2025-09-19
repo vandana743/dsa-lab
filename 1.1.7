@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+int main() {
+    int r, c;
+
+    // Read the number of rows and columns
+    scanf("%d %d", &r, &c);
+
+    int matrix[r][c];
+
+    // Read the elements of the matrix
+    for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++) {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+
+    // Print the original matrix
+    for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++) {
+            printf("%d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+
+    // Print the transpose of the matrix
+    for (int j = 0; j < c; j++) {
+        for (int i = 0; i < r; i++) {
+            printf("%d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
