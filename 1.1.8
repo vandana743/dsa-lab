@@ -1,0 +1,41 @@
+#include <stdio.h>
+
+int main() {
+    int r, c;
+
+    // Read the number of rows and columns
+    scanf("%d %d", &r, &c);
+
+    int matrix[r][c];
+    int zero_count = 0;
+    int non_zero_count = 0;
+
+    // Read matrix elements and count zeros and non-zeros
+    for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++) {
+            scanf("%d", &matrix[i][j]);
+            if (matrix[i][j] == 0) {
+                zero_count++;
+            } else {
+                non_zero_count++;
+            }
+        }
+    }
+
+    // Check if the matrix is sparse and print the result
+    if (zero_count > non_zero_count) {
+        printf("True\n");
+        // If sparse, print the non-zero elements
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                if (matrix[i][j] != 0) {
+                    printf("%d %d %d\n", i, j, matrix[i][j]);
+                }
+            }
+        }
+    } else {
+        printf("False\n");
+    }
+
+    return 0;
+}
