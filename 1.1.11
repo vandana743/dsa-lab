@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <stdlib.h> // Required for the qsort function
+
+// Comparison function for qsort to sort integers in ascending order.
+int compare_integers(const void* a, const void* b) {
+    int int_a = *(int*)a;
+    int int_b = *(int*)b;
+    return (int_a - int_b);
+}
+
+// Function to find the last occurrence of an element in a sorted array using binary search.
+int find_last_occurrence(int arr[], int n, int x) {
+    int low = 0;
+    int high = n - 1;
+    int result = -1;
+
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+
+        if (arr[mid] == x) {
+            result = mid;
+            // Since we need the last occurrence, we continue searching in the right subarray.
+            low = mid + 1;
+        } else if (arr[mid] < x) {
+            low = mid + 1;
+        } else {
+            high = mid - 1;
+        }
+    }
+
+    return result;
+}
+
+int main() {
+    int n, x;
+
+    // Read the number of elements
+    scanf("%d", &n);
+
+    // Read the array elements
+    int arr[n];
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    // Read the number to search for
+    scanf("%d", &x);
+
+    // Sort the array before performing binary search
+    qsort(arr, n, sizeof(int), compare_integers);
+
+    // Find the position of the number
+    int position = find_last_occurrence(arr, n, x);
+
+    // Print the result
+    printf("%d\n", position);
+
+    return 0;
+}
